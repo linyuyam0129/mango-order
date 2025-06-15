@@ -149,6 +149,7 @@
         <input type="hidden" name="order_first" id="order_first">
         <input type="hidden" name="order_second" id="order_second">
         <input type="hidden" name="order_third" id="order_third">
+        <input type="hidden" name="all_products" id="all_products_summary">
 
         <div class="mt-6 md:mt-8 p-4 bg-yellow-100 rounded-lg text-sm md:text-base text-gray-700">
           <p class="font-semibold text-yellow-800 mb-2">💡 訂購遇到問題？</p>
@@ -189,8 +190,8 @@
       <div class="mb-3 md:mb-4">
         <label class="block text-gray-700 font-semibold mb-2 text-base md:text-lg">地址：</label>
         <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-3 md:mb-4">
-          <select id="city" required class="w-full sm:w-1/2 bg-white"></select>
-          <select id="district" required class="w-full sm:w-1/2 bg-white"></select>
+          <select id="city" name="city" required class="w-full sm:w-1/2 bg-white"></select>
+          <select id="district" name="district" required class="w-full sm:w-1/2 bg-white"></select>
         </div>
         <input id="street" name="order_address" required class="w-full" placeholder="街道地址（如：忠孝東路100號）*">
       </div>
@@ -272,23 +273,15 @@
     total.textContent = `總金額：NT$${totalAmount}`;
 
     // 將訂購的商品清單總結成一個字串，放入隱藏欄位，方便後端接收
+    const allProductsInput = document.getElementById('all_products_summary'); // 直接獲取已存在的元素
     if (orderDetails.length > 0) {
-      const allProductsInput = document.createElement('input');
-      allProductsInput.type = 'hidden';
-      allProductsInput.name = 'all_products';
       allProductsInput.value = orderDetails.join(', '); // 用逗號分隔
-      document.getElementById('checkoutForm').appendChild(allProductsInput);
     } else {
-      // 如果沒有商品，移除該隱藏欄位
-      const existingAllProductsInput = document.querySelector('input[name="all_products"]');
-      if (existingAllProductsInput) {
-        existingAllProductsInput.remove();
-      }
+      allProductsInput.value = ''; // 如果沒有商品，清空值
+      summary.innerHTML = "<li class='text-gray-500'>購物車是空的，請選擇商品數量。</li>";
     }
 
-
     if (totalAmount === 0) {
-      summary.innerHTML = "<li class='text-gray-500'>購物車是空的，請選擇商品數量。</li>";
       document.querySelector('#step1 .btn-primary').disabled = true; // Disable "Next Step" button if cart is empty
       document.querySelector('#step1 .btn-primary').classList.add('opacity-50', 'cursor-not-allowed');
     } else {
