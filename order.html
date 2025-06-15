@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -7,49 +6,124 @@
   <title>訂購結帳 | 超甜蓮霧芒果</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Sans TC', 'Segoe UI', sans-serif;
       background: linear-gradient(to bottom, #fffdf3, #fffef8);
     }
     .active-step {
-      background-color: #f59e0b;
+      background-color: #f59e0b; /* Amber 500 */
       color: white;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+      transform: scale(1.1);
+    }
+    .step-indicator-item {
+      transition: all 0.3s ease-in-out;
+      width: 44px; /* Slightly smaller for mobile */
+      height: 44px; /* Slightly smaller for mobile */
+      font-size: 1.125rem; /* text-lg */
+    }
+    @media (min-width: 768px) { /* md breakpoint */
+        .step-indicator-item {
+            width: 48px; /* w-12 */
+            height: 48px; /* h-12 */
+            font-size: 1.25rem; /* text-xl */
+        }
+    }
+
+    input[type="text"], input[type="email"], select, textarea {
+      padding: 0.75rem 1rem; /* py-3 px-4 */
+      border-radius: 0.5rem; /* More rounded */
+      border: 1px solid #d1d5db; /* Gray 300 */
+      font-size: 1rem;
+      min-height: 48px; /* Ensure sufficient height for touch */
+      transition: all 0.2s ease-in-out;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+      border-color: #f59e0b; /* Amber 500 */
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+      outline: none;
+    }
+    .btn-primary {
+      background: linear-gradient(to right, #f59e0b, #fbbf24); /* Amber 500 to Yellow 400 */
+      color: white;
+      padding: 0.75rem 1.5rem; /* py-3 px-6 */
+      border-radius: 9999px; /* Fully rounded */
+      font-weight: 600;
+      font-size: 1rem; /* text-base */
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+      min-height: 48px; /* Ensure sufficient height for touch */
+    }
+    .btn-primary:hover {
+      background: linear-gradient(to right, #ea900b, #facc15); /* Slightly darker on hover */
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(245, 158, 11, 0.4);
+    }
+    .btn-secondary {
+      background-color: #e5e7eb; /* Gray 200 */
+      color: #4b5563; /* Gray 700 */
+      padding: 0.75rem 1.5rem; /* py-3 px-6 */
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 1rem; /* text-base */
+      transition: all 0.3s ease-in-out;
+      border: 1px solid #d1d5db;
+      min-height: 48px; /* Ensure sufficient height for touch */
+    }
+    .btn-secondary:hover {
+      background-color: #d1d5db; /* Gray 300 */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .product-card {
+      transition: all 0.3s ease-in-out;
+    }
+    .product-card:hover {
+      transform: translateY(-5px) scale(1.01); /* Lift and slightly enlarge on hover */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* Stronger shadow on hover */
     }
   </style>
 </head>
 <body class="pb-20">
-<section class="max-w-5xl mx-auto px-4 py-10">
-  <h2 class="text-2xl font-bold text-center mb-6">熱銷禮盒</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-    <div class="border rounded-xl p-4 shadow hover:shadow-xl transition transform hover:-translate-y-1">
-      <img src="15顆.jpg" alt="15粒裝" class="rounded mb-2">
-      <h3 class="text-lg font-semibold">15粒裝</h3>
-      <p class="text-amber-600 font-bold">NT$1300（含運）</p>
-      <label class="block mt-2 text-sm">數量：
-        <select class="mt-1 border rounded w-full px-2 py-1" data-name="15粒裝" data-price="1300" id="first">
+  <header class="bg-gradient-to-r from-yellow-400 to-amber-400 py-4 shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 flex justify-center items-center">
+      <h1 class="text-2xl md:text-3xl font-extrabold text-white">🛒 訂購結帳</h1>
+    </div>
+  </header>
+
+<section class="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-10 mt-6 md:mt-8 bg-white rounded-2xl shadow-xl border border-yellow-100">
+  <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 text-yellow-700">🎁 精選禮盒選購</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <div class="border rounded-2xl p-4 md:p-6 shadow-md product-card bg-yellow-50">
+      <img src="15顆.jpg" alt="15粒裝" class="rounded-lg mb-3 md:mb-4 w-full h-40 md:h-48 object-cover">
+      <h3 class="text-lg md:text-xl font-semibold text-gray-900">極品15粒裝</h3>
+      <p class="text-amber-600 font-bold text-xl md:text-2xl mt-1">NT$1300<span class="text-xs md:text-sm text-gray-500">（含運）</span></p>
+      <label class="block mt-3 md:mt-4 text-sm md:text-md text-gray-700">數量：
+        <select class="mt-2 border border-gray-300 rounded-lg w-full px-3 py-2 bg-white" data-name="15粒裝" data-price="1300" id="first">
           <option value="0">0 箱</option><option value="1">1 箱</option><option value="2">2 箱</option>
           <option value="3">3 箱</option><option value="4">4 箱</option><option value="5">5 箱</option>
         </select>
       </label>
     </div>
-    <div class="border rounded-xl p-4 shadow hover:shadow-xl transition transform hover:-translate-y-1">
-      <img src="18顆.jpg" alt="18粒裝" class="rounded mb-2">
-      <h3 class="text-lg font-semibold">18粒裝</h3>
-      <p class="text-amber-600 font-bold">NT$1100（含運）</p>
-      <label class="block mt-2 text-sm">數量：
-        <select class="mt-1 border rounded w-full px-2 py-1" data-name="18粒裝" data-price="1100" id="second">
+    <div class="border rounded-2xl p-4 md:p-6 shadow-md product-card bg-yellow-50">
+      <img src="18顆.jpg" alt="18粒裝" class="rounded-lg mb-3 md:mb-4 w-full h-40 md:h-48 object-cover">
+      <h3 class="text-lg md:text-xl font-semibold text-gray-900">精選18粒裝</h3>
+      <p class="text-amber-600 font-bold text-xl md:text-2xl mt-1">NT$1100<span class="text-xs md:text-sm text-gray-500">（含運）</span></p>
+      <label class="block mt-3 md:mt-4 text-sm md:text-md text-gray-700">數量：
+        <select class="mt-2 border border-gray-300 rounded-lg w-full px-3 py-2 bg-white" data-name="18粒裝" data-price="1100" id="second">
           <option value="0">0 箱</option><option value="1">1 箱</option><option value="2">2 箱</option>
           <option value="3">3 箱</option><option value="4">4 箱</option><option value="5">5 箱</option>
         </select>
       </label>
     </div>
-    <div class="border rounded-xl p-4 shadow hover:shadow-xl transition transform hover:-translate-y-1">
-      <img src="20顆.jpg" alt="20粒裝" class="rounded mb-2">
-      <h3 class="text-lg font-semibold">20粒裝</h3>
-      <p class="text-amber-600 font-bold">NT$1000（含運）</p>
-      <label class="block mt-2 text-sm">數量：
-        <select class="mt-1 border rounded w-full px-2 py-1" data-name="20粒裝" data-price="1000" id="third">
+    <div class="border rounded-2xl p-4 md:p-6 shadow-md product-card bg-yellow-50">
+      <img src="20顆.jpg" alt="20粒裝" class="rounded-lg mb-3 md:mb-4 w-full h-40 md:h-48 object-cover">
+      <h3 class="text-lg md:text-xl font-semibold text-gray-900">超值20粒裝</h3>
+      <p class="text-amber-600 font-bold text-xl md:text-2xl mt-1">NT$1000<span class="text-xs md:text-sm text-gray-500">（含運）</span></p>
+      <label class="block mt-3 md:mt-4 text-sm md:text-md text-gray-700">數量：
+        <select class="mt-2 border border-gray-300 rounded-lg w-full px-3 py-2 bg-white" data-name="20粒裝" data-price="1000" id="third">
           <option value="0">0 箱</option><option value="1">1 箱</option><option value="2">2 箱</option>
           <option value="3">3 箱</option><option value="4">4 箱</option><option value="5">5 箱</option>
         </select>
@@ -58,71 +132,111 @@
   </div>
 </section>
 
-<div class="max-w-2xl mx-auto bg-white p-8 my-10 rounded-2xl shadow-xl border border-yellow-100">
-  <div id="step-indicator" class="flex items-center justify-center space-x-4 mb-8">
-    <div class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 font-bold">1</div>
-    <div class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 font-bold">2</div>
-    <div class="w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 font-bold">3</div>
+<div class="max-w-2xl mx-auto bg-white p-6 md:p-8 my-8 md:my-10 rounded-2xl shadow-xl border border-yellow-100">
+  <div id="step-indicator" class="flex items-center justify-center space-x-4 md:space-x-6 mb-8 md:mb-10">
+    <div class="step-indicator-item w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 font-bold text-lg md:text-xl">1</div>
+    <div class="step-indicator-item w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 font-bold text-lg md:text-xl">2</div>
+    <div class="step-indicator-item w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-500 font-bold text-lg md:text-xl">3</div>
   </div>
 
-  <form id="checkoutForm" class="space-y-6" method="POST" action="https://script.google.com/macros/s/AKfycbxq_SSg1uR1vkUSzKIYFL1DTboCENG6fgbYbrPQT-T86e2rjwBF1_oLEOlUaSfx1TxhYw/exec">
+  <form id="checkoutForm" class="space-y-5 md:space-y-6" method="POST" action="https://script.google.com/macros/s/AKfycbxEkh0kjv2HUFKHeLTQwBwBbV5KqzlQsqwUIiWlv4vEUcI5yPMuLInMPh_BlwNuaZ3y/exec">
     <div id="step1">
-      <h2 class="text-2xl font-bold text-yellow-700 mb-4">🚚 運送與付款方式</h2>
-      <div id="cart-section" class="mb-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-2">🧺 購物車明細</h2>
-        <ul id="cart-summary" class="list-disc pl-5 text-sm text-gray-700"></ul>
-        <p id="cart-total" class="font-bold text-right mt-2 text-yellow-700">總金額：NT$0</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-5 md:mb-6 flex items-center">🚚 運送與付款方式</h2>
+      <div id="cart-section" class="mb-6 md:mb-8 p-5 md:p-6 bg-yellow-50 rounded-xl border border-yellow-200 shadow-inner">
+        <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4 flex items-center">🧺 購物車明細</h3>
+        <ul id="cart-summary" class="list-disc pl-5 md:pl-6 text-sm md:text-base text-gray-700 leading-relaxed"></ul>
+        <p id="cart-total" class="font-extrabold text-right mt-3 md:mt-4 text-yellow-800 text-xl md:text-2xl">總金額：NT$0</p>
         <input type="hidden" name="order_first" id="order_first">
         <input type="hidden" name="order_second" id="order_second">
         <input type="hidden" name="order_third" id="order_third">
+
+        <div class="mt-6 md:mt-8 p-4 bg-yellow-100 rounded-lg text-sm md:text-base text-gray-700">
+          <p class="font-semibold text-yellow-800 mb-2">💡 訂購遇到問題？</p>
+          <p class="mb-3">如果訂購過程中有任何疑問或特殊需求，歡迎透過我們的 LINE 官方帳號聯繫我們！</p>
+          <a href="https://lin.ee/eWtrwEi" target="_blank" class="inline-flex items-center bg-green-500 text-white px-4 py-2 rounded-full font-bold hover:bg-green-600 transition duration-300">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-4a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V7a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+            LINE 客服：點此加好友
+          </a>
+        </div>
       </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-medium mb-1">付款方式：</label>
-        <label class="block mb-2"><input type="radio" name="pay" value="貨到付款" checked onchange="toggleATM()"> 貨到付款</label>
-        <label class="block"><input type="radio" name="pay" value="ATM" onchange="toggleATM()"> ATM 轉帳</label>
+      <div class="mb-5 md:mb-6">
+        <label class="block text-gray-700 font-semibold mb-2 text-base md:text-lg">付款方式：</label>
+        <div class="flex flex-col space-y-2">
+          <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+            <input type="radio" name="pay" value="貨到付款" checked onchange="toggleATM()" class="form-radio text-yellow-500 h-5 w-5">
+            <span class="ml-2">貨到付款</span>
+          </label>
+          <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+            <input type="radio" name="pay" value="ATM" onchange="toggleATM()" class="form-radio text-yellow-500 h-5 w-5">
+            <span class="ml-2">ATM 轉帳</span>
+          </label>
+        </div>
       </div>
-      <div id="atmCode" class="mb-4 hidden">
-        <label class="block text-sm text-gray-700 font-medium">請填寫轉帳帳號末五碼：</label>
-        <input type="text" name="atm_code" maxlength="5" class="w-full border border-gray-300 px-3 py-2 rounded">
+      <div id="atmCode" class="mb-5 md:mb-6 hidden">
+        <label class="block text-sm md:text-md text-gray-700 font-medium mb-2">請填寫轉帳帳號末五碼：</label>
+        <input type="text" name="atm_code" maxlength="5" class="w-full" placeholder="銀行帳號末五碼">
       </div>
-      <div class="flex justify-between mt-8">
-        <button type="button" onclick="nextStep(2)" class="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600">下一步</button>
+      <div class="flex justify-between mt-8 md:mt-10">
+        <a href="index.html" class="btn-secondary">回首頁</a>
+        <button type="button" onclick="nextStep(2)" class="btn-primary">下一步</button>
       </div>
     </div>
 
     <div id="step2" class="hidden">
-      <h2 class="text-2xl font-bold text-yellow-700 mb-4">🏠 收件資訊</h2>
-      <input name="order_name" required class="w-full border border-gray-300 px-4 py-2 rounded-lg mb-3" placeholder="收件人姓名">
-      <input name="order_phone" required class="w-full border border-gray-300 px-4 py-2 rounded-lg mb-3" placeholder="聯絡電話">
-      <div class="mb-3">
-        <label class="block text-gray-700 font-medium mb-1">地址：</label>
-        <div class="flex space-x-2 mb-2">
-          <select id="city" required class="w-1/2 border border-gray-300 px-3 py-2 rounded"></select>
-          <select id="district" required class="w-1/2 border border-gray-300 px-3 py-2 rounded"></select>
+      <h2 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-5 md:mb-6 flex items-center">🏠 收件資訊</h2>
+      <input name="order_name" required class="w-full mb-3 md:mb-4" placeholder="收件人姓名 *">
+      <input name="order_phone" required class="w-full mb-3 md:mb-4" placeholder="聯絡電話 *">
+      <div class="mb-3 md:mb-4">
+        <label class="block text-gray-700 font-semibold mb-2 text-base md:text-lg">地址：</label>
+        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-3 md:mb-4">
+          <select id="city" required class="w-full sm:w-1/2 bg-white"></select>
+          <select id="district" required class="w-full sm:w-1/2 bg-white"></select>
         </div>
-        <input id="street" name="order_address" required class="w-full border border-gray-300 px-3 py-2 rounded-lg" placeholder="街道地址（如：忠孝東路100號）">
+        <input id="street" name="order_address" required class="w-full" placeholder="街道地址（如：忠孝東路100號）*">
       </div>
-      <label class="block text-gray-700 font-medium mb-1">收件時間：</label>
-      <label><input type="radio" name="order_pt" value="不指定" checked> 不指定</label>
-      <label><input type="radio" name="order_pt" value="早上"> 早上</label>
-      <label><input type="radio" name="order_pt" value="下午"> 下午</label>
-      <div class="flex justify-between mt-8">
-        <button type="button" onclick="nextStep(1)" class="px-5 py-2 rounded border border-gray-400 text-gray-600 hover:bg-gray-100">回上一步</button>
-        <button type="button" onclick="nextStep(3)" class="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600">下一步</button>
+      <label class="block text-gray-700 font-semibold mb-2 text-base md:text-lg">收件時間：</label>
+      <div class="flex flex-col space-y-2">
+        <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+          <input type="radio" name="order_pt" value="不指定" checked class="form-radio text-yellow-500 h-5 w-5">
+          <span class="ml-2">不指定</span>
+        </label>
+        <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+          <input type="radio" name="order_pt" value="早上" class="form-radio text-yellow-500 h-5 w-5">
+          <span class="ml-2">早上</span>
+        </label>
+        <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+          <input type="radio" name="order_pt" value="下午" class="form-radio text-yellow-500 h-5 w-5">
+          <span class="ml-2">下午</span>
+        </label>
+      </div>
+      <div class="flex justify-between mt-8 md:mt-10">
+        <button type="button" onclick="nextStep(1)" class="btn-secondary">回上一步</button>
+        <button type="button" onclick="nextStep(3)" class="btn-primary">下一步</button>
       </div>
     </div>
 
     <div id="step3" class="hidden">
-      <h2 class="text-2xl font-bold text-yellow-700 mb-4">📩 補充資料</h2>
-      <label class="block text-gray-700 font-medium mb-1">性別：</label>
-      <label><input type="radio" name="gender" value="無" class="form-radio" checked> 無</label>
-      <label><input type="radio" name="gender" value="先生" class="form-radio"> 先生</label>
-      <label><input type="radio" name="gender" value="小姐" class="form-radio"> 小姐</label>
-      <textarea name="order_ps" placeholder="備註（可選填）" class="w-full border border-gray-300 px-4 py-2 rounded-lg mb-3"></textarea>
-      <input name="order_email" required class="w-full border border-gray-300 px-4 py-2 rounded-lg mb-3" placeholder="Email（將寄送訂單通知）">
-      <div class="flex justify-between mt-8">
-        <button type="button" onclick="nextStep(2)" class="px-5 py-2 rounded border border-gray-400 text-gray-600 hover:bg-gray-100">回上一步</button>
-        <button type="submit" class="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600">送出訂單</button>
+      <h2 class="text-2xl md:text-3xl font-bold text-yellow-700 mb-5 md:mb-6 flex items-center">📩 補充資料</h2>
+      <label class="block text-gray-700 font-semibold mb-2 text-base md:text-lg">稱謂：</label>
+      <div class="flex flex-col space-y-2 mb-3 md:mb-4">
+        <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+          <input type="radio" name="gender" value="無" class="form-radio text-yellow-500 h-5 w-5" checked>
+          <span class="ml-2">無</span>
+        </label>
+        <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+          <input type="radio" name="gender" value="先生" class="form-radio text-yellow-500 h-5 w-5">
+          <span class="ml-2">先生</span>
+        </label>
+        <label class="inline-flex items-center text-sm md:text-md text-gray-800">
+          <input type="radio" name="gender" value="小姐" class="form-radio text-yellow-500 h-5 w-5">
+          <span class="ml-2">小姐</span>
+        </label>
+      </div>
+      <textarea name="order_ps" placeholder="備註（可選填，例如：指定送達日期、特殊需求等）" rows="4" class="w-full mb-3 md:mb-4"></textarea>
+      <input name="order_email" type="email" required class="w-full mb-3 md:mb-4" placeholder="Email（將寄送訂單通知）*">
+      <div class="flex justify-between mt-8 md:mt-10">
+        <button type="button" onclick="nextStep(2)" class="btn-secondary">回上一步</button>
+        <button type="submit" class="btn-primary">送出訂單 ✅</button>
       </div>
     </div>
   </form>
@@ -135,9 +249,12 @@
     summary.innerHTML = "";
     let totalAmount = 0;
 
+    // 將商品數量寫入隱藏欄位，以便提交
     document.getElementById("order_first").value = document.getElementById("first").value;
     document.getElementById("order_second").value = document.getElementById("second").value;
     document.getElementById("order_third").value = document.getElementById("third").value;
+
+    let orderDetails = []; // 用來儲存訂購商品的詳細資訊，以便傳送到 Google Sheet
 
     document.querySelectorAll('select[data-name]').forEach(select => {
       const count = parseInt(select.value);
@@ -147,20 +264,70 @@
         const itemTotal = count * price;
         totalAmount += itemTotal;
         const li = document.createElement("li");
-        li.textContent = `${name} × ${count} = NT$${itemTotal}`;
+        li.textContent = `${name} × ${count} 箱 = NT$${itemTotal}`;
         summary.appendChild(li);
+        orderDetails.push(`${name} (${count}箱)`); // 格式化商品資訊
       }
     });
     total.textContent = `總金額：NT$${totalAmount}`;
+
+    // 將訂購的商品清單總結成一個字串，放入隱藏欄位，方便後端接收
+    if (orderDetails.length > 0) {
+      const allProductsInput = document.createElement('input');
+      allProductsInput.type = 'hidden';
+      allProductsInput.name = 'all_products';
+      allProductsInput.value = orderDetails.join(', '); // 用逗號分隔
+      document.getElementById('checkoutForm').appendChild(allProductsInput);
+    } else {
+      // 如果沒有商品，移除該隱藏欄位
+      const existingAllProductsInput = document.querySelector('input[name="all_products"]');
+      if (existingAllProductsInput) {
+        existingAllProductsInput.remove();
+      }
+    }
+
+
+    if (totalAmount === 0) {
+      summary.innerHTML = "<li class='text-gray-500'>購物車是空的，請選擇商品數量。</li>";
+      document.querySelector('#step1 .btn-primary').disabled = true; // Disable "Next Step" button if cart is empty
+      document.querySelector('#step1 .btn-primary').classList.add('opacity-50', 'cursor-not-allowed');
+    } else {
+      document.querySelector('#step1 .btn-primary').disabled = false;
+      document.querySelector('#step1 .btn-primary').classList.remove('opacity-50', 'cursor-not-allowed');
+    }
   }
 
   function nextStep(step) {
+    // Basic validation for Step 1 before moving to Step 2
+    if (step === 2) {
+      const totalAmount = parseInt(document.getElementById("cart-total").textContent.replace('總金額：NT$', ''));
+      if (totalAmount === 0) {
+        alert("請至少選擇一項商品！");
+        return;
+      }
+    }
+
+    // Basic validation for Step 2 before moving to Step 3
+    if (step === 3) {
+      const name = document.querySelector('input[name="order_name"]').value.trim();
+      const phone = document.querySelector('input[name="order_phone"]').value.trim();
+      const city = document.getElementById('city').value;
+      const district = document.getElementById('district').value;
+      const street = document.getElementById('street').value.trim();
+
+      if (!name || !phone || !city || !district || !street) {
+        alert("請填寫所有必填的收件資訊！");
+        return;
+      }
+    }
+
     for (let i = 1; i <= 3; i++) {
       document.getElementById(`step${i}`)?.classList.add("hidden");
       document.querySelectorAll("#step-indicator div")[i - 1].classList.remove("active-step");
     }
     document.getElementById(`step${step}`)?.classList.remove("hidden");
     document.querySelectorAll("#step-indicator div")[step - 1].classList.add("active-step");
+    // Only show cart summary on step 1
     document.getElementById("cart-section").classList.toggle("hidden", step !== 1);
   }
 
@@ -178,23 +345,47 @@
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
+
+    // Client-side validation for email in step 3
+    const emailInput = document.querySelector('input[name="order_email"]');
+    if (!emailInput.value.includes('@') || !emailInput.value.includes('.')) {
+        alert("請輸入有效的 Email 地址！");
+        return;
+    }
+
+    // Add a loading state to the button
+    const submitButton = document.querySelector('#step3 button[type="submit"]');
+    submitButton.textContent = '送出中...';
+    submitButton.disabled = true;
+    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+
     fetch(form.action, {
       method: "POST",
       body: formData
-    }).then(res => res.text()).then(() => {
-      alert("✅ 訂單已送出，感謝您的訂購！");
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return response.text();
+    })
+    .then(data => {
+      alert("✅ 訂單已送出，感謝您的訂購！我們將盡快為您處理。");
       form.reset();
-      nextStep(1);
-      updateCartSummary();
+      nextStep(1); // Go back to step 1 after submission
+      updateCartSummary(); // Reset cart summary
     }).catch(err => {
-      alert("❌ 訂單送出失敗，請稍後再試！");
+      alert("❌ 訂單送出失敗，請稍後再試！" + err.message);
       console.error(err);
+    }).finally(() => {
+        // Re-enable the button regardless of success or failure
+        submitButton.textContent = '送出訂單 ✅';
+        submitButton.disabled = false;
+        submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
     });
   });
 
-  // 初始化地址選單
-  $(function () {
-    const taiwan = {
+  // Taiwan address data
+  const taiwan = {
   '台北市': ['中正區', '大同區', '中山區', '松山區', '大安區', '萬華區', '信義區', '士林區', '北投區', '內湖區', '南港區', '文山區'],
   '新北市': ['板橋區', '三重區', '中和區', '永和區', '新莊區', '新店區', '土城區', '樹林區', '鶯歌區', '三峽區', '淡水區', '汐止區', '瑞芳區', '林口區', '五股區', '泰山區', '八里區', '深坑區', '石碇區', '坪林區', '三芝區', '石門區', '平溪區', '雙溪區', '貢寮區'],
   '基隆市': ['仁愛區', '信義區', '中正區', '中山區', '安樂區', '暖暖區', '七堵區'],
@@ -209,7 +400,7 @@
   '嘉義市': ['東區', '西區'],
   '嘉義縣': ['太保市', '朴子市', '布袋鎮', '大林鎮', '民雄鄉', '溪口鄉', '新港鄉', '六腳鄉', '東石鄉', '義竹鄉', '鹿草鄉', '水上鄉', '中埔鄉', '竹崎鄉', '梅山鄉', '番路鄉', '大埔鄉', '阿里山鄉'],
   '台南市': ['中西區', '東區', '南區', '北區', '安平區', '安南區', '永康區', '歸仁區', '新化區', '左鎮區', '玉井區', '楠西區', '南化區', '仁德區', '關廟區', '龍崎區', '官田區', '麻豆區', '佳里區', '西港區', '七股區', '將軍區', '學甲區', '北門區', '新營區', '後壁區', '白河區', '東山區', '六甲區', '下營區', '柳營區', '鹽水區', '善化區', '大內區', '山上區', '新市區', '安定區'],
-  '高雄市': ['新興區', '前金區', '苓雅區', '鹽埕區', '鼓山區', '旗津區', '前鎮區', '三民區', '楠梓區', '小港區', '左營區', '仁武區', '大社區', '岡山區', '路竹區', '阿蓮區', '田寮區', '燕巢區', '橋頭區', '梓官區', '彌陀區', '永安區', '湖內區', '鳳山區', '大寮區', '林園區', '鳥松區', '大樹區', '旗山區', '美濃區', '六龜區', '甲仙區', '杉林區', '內門區', '茂林區', '桃源區', '那瑪夏區'],
+  '高雄市': ['新興區', '前金區', '苓雅區', '鼓山區', '旗津區', '前鎮區', '三民區', '楠梓區', '小港區', '左營區', '仁武區', '大社區', '岡山區', '路竹區', '阿蓮區', '田寮區', '燕巢區', '橋頭區', '梓官區', '彌陀區', '永安區', '湖內區', '鳳山區', '大寮區', '林園區', '鳥松區', '大樹區', '旗山區', '美濃區', '六龜區', '甲仙區', '杉林區', '內門區', '茂林區', '桃源區', '那瑪夏區'],
   '屏東縣': ['屏東市', '潮州鎮', '東港鎮', '恆春鎮', '萬丹鄉', '長治鄉', '麟洛鄉', '九如鄉', '里港鄉', '鹽埔鄉', '高樹鄉', '萬巒鄉', '內埔鄉', '竹田鄉', '新埤鄉', '枋寮鄉', '新園鄉', '崁頂鄉', '林邊鄉', '南州鄉', '佳冬鄉', '琉球鄉', '車城鄉', '滿州鄉', '枋山鄉', '三地門鄉', '霧台鄉', '瑪家鄉', '泰武鄉', '來義鄉', '春日鄉', '獅子鄉', '牡丹鄉'],
   '台東縣': ['台東市', '成功鎮', '關山鎮', '卑南鄉', '鹿野鄉', '池上鄉', '東河鄉', '長濱鄉', '太麻里鄉', '大武鄉', '綠島鄉', '蘭嶼鄉', '延平鄉', '金峰鄉', '達仁鄉', '海端鄉'],
   '花蓮縣': ['花蓮市', '鳳林鎮', '玉里鎮', '新城鄉', '吉安鄉', '壽豐鄉', '光復鄉', '豐濱鄉', '瑞穗鄉', '萬榮鄉', '富里鄉', '秀林鄉', '卓溪鄉'],
@@ -218,17 +409,26 @@
   '金門縣': ['金城鎮', '金沙鎮', '金湖鎮', '金寧鄉', '烈嶼鄉', '烏坵鄉'],
   '連江縣': ['南竿鄉', '北竿鄉', '莒光鄉', '東引鄉']
 };
+
+  $(function () {
     const $city = $('#city');
     const $district = $('#district');
+
+    // Populate cities
     Object.keys(taiwan).forEach(city => $city.append(`<option value="${city}">${city}</option>`));
+
+    // Handle district change based on city selection
     $city.on('change', function () {
       const selected = this.value;
       $district.empty();
-      if (taiwan[selected]) taiwan[selected].forEach(d => $district.append(`<option value="${d}">${d}</option>`));
-    });
-    nextStep(1);
-    toggleATM();
-    updateCartSummary();
+      if (taiwan[selected]) {
+        taiwan[selected].forEach(d => $district.append(`<option value="${d}">${d}</option>`));
+      }
+    }).trigger('change'); // Trigger change on load to populate initial districts
+
+    nextStep(1); // Initialize to step 1
+    toggleATM(); // Initialize ATM field visibility
+    updateCartSummary(); // Initialize cart summary
   });
 </script>
 </body>

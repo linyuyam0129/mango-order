@@ -1,75 +1,108 @@
-<!-- modern_mango_store.html - 首頁部分 -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>超甜蓮霧芒果</title>
+  <title>超甜蓮霧芒果 | 產地直送，天然熟成</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', 'Noto Sans TC', sans-serif;
+      font-family: 'Noto Sans TC', 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fffdf3, #fffef8); /* Soft gradient background */
+      color: #333; /* Darker default text for readability */
+    }
+    .product-card {
+      transition: all 0.3s ease-in-out;
+    }
+    .product-card:hover {
+      transform: translateY(-5px) scale(1.02); /* Lift and slightly enlarge on hover */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+    }
+    /* Enhance mobile touch targets for form elements if needed */
+    select, input[type="text"], input[type="email"], textarea {
+      min-height: 48px; /* Ensure sufficient height for touch */
+    }
+    /* Specific styling for hero background image if needed, for better mobile display */
+    .hero-section {
+        background-image: url('mango_hero_mobile.jpg'); /* Consider a mobile-specific hero image */
+        background-size: cover;
+        background-position: center;
+    }
+    @media (min-width: 768px) { /* Medium screens and up */
+        .hero-section {
+            background-image: url('mango_hero_desktop.jpg'); /* Desktop hero image */
+        }
     }
   </style>
 </head>
-<body class="bg-yellow-50 text-gray-800">
-  <!-- Header -->
-  <header class="bg-gradient-to-r from-yellow-400 to-yellow-300 py-5 shadow">
-    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-      <h1 class="text-3xl font-bold text-white">🍋 超甜蓮霧芒果</h1>
-      <a href="order.html" class="bg-white text-yellow-600 px-4 py-2 rounded-full hover:bg-yellow-100">前往結帳</a>
+<body class="text-gray-800">
+  <header class="bg-gradient-to-r from-yellow-400 to-amber-400 py-4 md:py-6 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
+      <h1 class="text-2xl md:text-4xl font-extrabold text-white tracking-wide">🥭 超甜蓮霧芒果</h1>
+      <a href="order.html" class="bg-white text-yellow-700 px-4 py-2 md:px-6 md:py-3 rounded-full font-semibold shadow-md hover:bg-yellow-100 hover:text-yellow-800 transition duration-300 ease-in-out transform hover:scale-105 text-sm md:text-base">立即訂購</a>
     </div>
   </header>
 
-  <!-- Hero section -->
-  <section class="text-center py-12">
-    <h2 class="text-3xl font-bold mb-4">產地直送・天然熟成</h2>
-    <p class="max-w-xl mx-auto text-gray-600">來自屏東枋山，無毒農法栽種，每一口都是陽光的味道</p>
+  <section class="text-center py-12 md:py-16 bg-white bg-opacity-80 mx-4 md:mx-auto rounded-xl shadow-lg mt-6 md:mt-8 max-w-6xl hero-section">
+    <h2 class="text-3xl md:text-5xl font-extrabold mb-3 md:mb-5 text-yellow-700">陽光滋味・鮮甜直送</h2>
+    <p class="max-w-2xl mx-auto text-base md:text-lg text-gray-600 leading-relaxed px-4 md:px-0">來自屏東枋山，無毒農法栽種，每一顆芒果都充滿南台灣的陽光與熱情，讓您品嚐最天然的美味。</p>
   </section>
 
-  <!-- 圖片導覽 -->
-  <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4 py-6">
-    <img src="芒果園.jpg" alt="果園實景" class="rounded-xl shadow">
-    <img src="芒果圖.jpg" alt="產品圖" class="rounded-xl shadow">
-  </section>
-
-  <!-- 商品卡區塊 -->
-  <section class="max-w-5xl mx-auto px-4 py-10">
-    <h2 class="text-2xl font-bold text-center mb-6">熱銷禮盒</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-      <div class="border rounded-xl p-4 shadow hover:shadow-xl transition transform hover:-translate-y-1">
-        <img src="15顆.jpg" alt="15粒裝" class="rounded mb-2">
-        <h3 class="text-lg font-semibold">15粒裝</h3>
-        <p class="text-amber-600 font-bold">NT$1300（含運）</p>
+  <section class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-4 md:px-6 py-8 md:py-12">
+    <div class="rounded-2xl shadow-xl overflow-hidden product-card">
+      <img src="芒果園.jpg" alt="果園實景" class="w-full h-56 md:h-80 object-cover transform hover:scale-105 transition duration-500 ease-in-out">
+      <div class="p-3 md:p-4 bg-white">
+        <p class="text-base md:text-lg font-semibold text-gray-700">🌱 我們友善的果園環境</p>
       </div>
-      <div class="border rounded-xl p-4 shadow hover:shadow-xl transition transform hover:-translate-y-1">
-        <img src="18顆.jpg" alt="18粒裝" class="rounded mb-2">
-        <h3 class="text-lg font-semibold">18粒裝</h3>
-        <p class="text-amber-600 font-bold">NT$1100（含運）</p>
-      </div>
-      <div class="border rounded-xl p-4 shadow hover:shadow-xl transition transform hover:-translate-y-1">
-        <img src="20顆.jpg" alt="20粒裝" class="rounded mb-2">
-        <h3 class="text-lg font-semibold">20粒裝</h3>
-        <p class="text-amber-600 font-bold">NT$1000（含運）</p>
+    </div>
+    <div class="rounded-2xl shadow-xl overflow-hidden product-card">
+      <img src="芒果圖.jpg" alt="產品圖" class="w-full h-56 md:h-80 object-cover transform hover:scale-105 transition duration-500 ease-in-out">
+      <div class="p-3 md:p-4 bg-white">
+        <p class="text-base md:text-lg font-semibold text-gray-700">✨ 顆顆飽滿，金黃誘人</p>
       </div>
     </div>
   </section>
 
-  <!-- LINE 區 + 回結帳按鈕 -->
-  <section class="text-center py-10">
-    <h2 class="text-xl font-bold">📲 加入 LINE 官方帳號</h2>
-    <p class="mb-2">接收最新果園資訊與優惠！</p>
-    <a href="https://lin.ee/eWtrwEi" target="_blank">
-      <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" class="mx-auto hover:scale-110 transform transition" height="36">
+  <section class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-10 text-yellow-700">🎁 熱銷禮盒推薦</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div class="bg-white rounded-2xl p-5 md:p-6 shadow-lg border border-yellow-100 product-card">
+        <img src="15顆.jpg" alt="15粒裝禮盒" class="rounded-lg mb-3 md:mb-4 w-full h-48 md:h-60 object-cover">
+        <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1 md:mb-2">極品15粒裝</h3>
+        <p class="text-amber-600 text-2xl md:text-3xl font-extrabold">NT$1300<span class="text-sm md:text-lg font-medium text-gray-500">（含運）</span></p>
+        <p class="text-gray-600 mt-1 md:mt-2 text-sm md:text-base">適合小家庭或送禮，果肉細緻香甜。</p>
+      </div>
+      <div class="bg-white rounded-2xl p-5 md:p-6 shadow-lg border border-yellow-100 product-card">
+        <img src="18顆.jpg" alt="18粒裝禮盒" class="rounded-lg mb-3 md:mb-4 w-full h-48 md:h-60 object-cover">
+        <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1 md:mb-2">精選18粒裝</h3>
+        <p class="text-amber-600 text-2xl md:text-3xl font-extrabold">NT$1100<span class="text-sm md:text-lg font-medium text-gray-500">（含運）</span></p>
+        <p class="text-gray-600 mt-1 md:mt-2 text-sm md:text-base">中等份量，家庭享用或分享皆宜。</p>
+      </div>
+      <div class="bg-white rounded-2xl p-5 md:p-6 shadow-lg border border-yellow-100 product-card">
+        <img src="20顆.jpg" alt="20粒裝禮盒" class="rounded-lg mb-3 md:mb-4 w-full h-48 md:h-60 object-cover">
+        <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1 md:mb-2">超值20粒裝</h3>
+        <p class="text-amber-600 text-2xl md:text-3xl font-extrabold">NT$1000<span class="text-sm md:text-lg font-medium text-gray-500">（含運）</span></p>
+        <p class="text-gray-600 mt-1 md:mt-2 text-sm md:text-base">經濟實惠，芒果愛好者必選！</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="text-center py-12 md:py-16 bg-yellow-50 rounded-xl shadow-inner max-w-6xl mx-4 md:mx-auto mb-8 md:mb-10">
+    <h2 class="text-2xl md:text-3xl font-bold text-yellow-800 mb-3 md:mb-4">📲 追蹤我們，掌握最新優惠！</h2>
+    <p class="mb-5 md:mb-6 text-gray-700 text-base md:text-lg px-4 md:px-0">加入 LINE 官方帳號，獨家果園資訊與限時優惠不錯過！</p>
+    <a href="https://lin.ee/eWtrwEi" target="_blank" class="inline-block">
+      <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png" class="mx-auto h-10 md:h-12 hover:scale-110 transform transition duration-300 ease-in-out" alt="Add friend">
     </a>
-    <div class="mt-6">
-      <a href="order.html" class="inline-block bg-yellow-400 text-white px-6 py-2 rounded-full hover:bg-yellow-500">立即前往結帳</a>
+    <div class="mt-8 md:mt-10">
+      <a href="order.html" class="inline-block bg-gradient-to-r from-yellow-500 to-amber-500 text-white px-8 py-3 md:px-10 md:py-4 rounded-full text-lg md:text-xl font-semibold shadow-lg hover:from-yellow-600 hover:to-amber-600 transition duration-300 ease-in-out transform hover:scale-105">
+        立即前往結帳 🚀
+      </a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-yellow-300 text-white text-center py-4">
-    <p>© 2025 超甜蓮霧芒果. All rights reserved.</p>
+  <footer class="bg-yellow-600 text-white text-center py-5 md:py-6 shadow-inner">
+    <p class="text-base md:text-lg">© 2025 超甜蓮霧芒果. All rights reserved. 感謝您的支持！</p>
   </footer>
 </body>
 </html>
